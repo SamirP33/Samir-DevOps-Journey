@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 INSTANCE_ID="i-02b6ec1e0d5eb791f"
 
