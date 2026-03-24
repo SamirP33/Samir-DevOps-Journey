@@ -1,0 +1,32 @@
+#!/bin/bash
+
+### This is application log clean-up script ###
+
+FILE="application.log"
+
+echo "Checking the disk usage....."
+
+df -h >> $FILE
+
+echo "File has been updated with latest details"
+
+echo "Top 10 large files:" 
+
+du -ah /home/ubuntu | sort -rh | head -10 >> $FILE
+du -ah /home/ubuntu | sort -rh | head -10
+
+echo "----------------------------------------"
+
+echo "Asking user for deleting...."
+
+read -p "Enter file path to delete: " filepath
+
+read -p "Confirm if you want to delete file? (yes/no): " choice
+
+if [ "$choice" == "yes" ]
+then
+    rm -i "$filepath"
+    echo "File deleted successfully"
+else
+    echo "File will not be deleted"
+fi

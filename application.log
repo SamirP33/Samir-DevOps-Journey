@@ -1,0 +1,19 @@
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        6.8G  5.2G  1.6G  77% /
+tmpfs            456M     0  456M   0% /dev/shm
+tmpfs            183M  912K  182M   1% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+efivarfs         128K  3.8K  120K   4% /sys/firmware/efi/efivars
+/dev/nvme0n1p16  881M  159M  660M  20% /boot
+/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi
+tmpfs             92M   16K   92M   1% /run/user/1000
+311M	/home/ubuntu
+245M	/home/ubuntu/aws/dist
+245M	/home/ubuntu/aws
+146M	/home/ubuntu/aws/dist/awscli
+103M	/home/ubuntu/aws/dist/awscli/botocore/data
+103M	/home/ubuntu/aws/dist/awscli/botocore
+64M	/home/ubuntu/awscliv2.zip
+39M	/home/ubuntu/aws/dist/libpython3.13.so.1.0
+27M	/home/ubuntu/aws/dist/lib-dynload
+26M	/home/ubuntu/aws/dist/awscli/examples
