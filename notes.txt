@@ -1,0 +1,4 @@
+aws ec2 run-instances ...
+aws s3 cp file.txt s3://bucket-name
+mysql -h mydatabase-1.cx8ww46sk815.ap-south-1.rds.amazonaws.com -P 3306 -u admin -p
+SHOW DATABASES;
