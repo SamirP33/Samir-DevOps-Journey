@@ -42,3 +42,7 @@ User → Load Balancer → Auto Scaling (Tomcat) → Backend (MySQL, Memcached, 
 - Highly available and scalable system
 - Automatic traffic distribution
 - Self-healing infrastructure
+- 
+- ##  Automation Scripts
+- backend-setup.sh → installs backend services
+- tomcat-setup.sh → installs and configures Tomcat
