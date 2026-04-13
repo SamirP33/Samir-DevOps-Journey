@@ -90,24 +90,3 @@ The pipeline automates the process of building, analyzing, containerizing, and d
 * Application can be deployed anywhere using Docker  
 
 ---
-
-## Project Structure
-
-05-CI-CD/
-│
-├── Jenkinsfile
-├── Dockerfile
-├── setup.sh
-├── README.md
-├── screenshots/
-└── cicd-notes.txt
-
----
-
-## Key Improvement
-
-> This project was initially implemented using Nexus for artifact storage.  
-> It was later enhanced by integrating Docker for containerization and Docker Hub for image storage, enabling a more scalable and modern deployment approach.
-
----
-
