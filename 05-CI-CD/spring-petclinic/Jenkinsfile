@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven3'
+    }
+
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/SamirP33/Samir-DevOps-Journey.git'
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                dir('05-CI-CD/spring-petclinic') {
+                    sh 'mvn clean install -DskipTests'
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('05-CI-CD/spring-petclinic') {
+                    sh 'docker build -t samirp33/petclinic-app .'
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh '''
+                    echo $PASS | docker login -u $USER --password-stdin
+                    docker push samirp33/petclinic-app
+                    '''
+                }
+            }
+        }
+    }
+}
