@@ -14,7 +14,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic.git'
+                git branch: 'main', url: 'https://github.com/SamirP33/spring-petclinic.git'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 java -version
 
                 echo "Building project using Maven..."
-                mvn clean install
+                mvn clean install -DskipTests
                 '''
             }
         }
@@ -41,12 +41,24 @@ pipeline {
             }
         }
 
-        stage('Upload Artifact to Nexus') {
+        stage('Docker Build') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh '''
+                echo "Building Docker image..."
+                docker build -t samirp33/petclinic-app .
+                '''
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh '''
-                    echo "Uploading artifact to Nexus..."
-                    curl -v -u $USERNAME:$PASSWORD --upload-file target/*.jar http://13.233.89.107:8081/repository/maven-releases/spring-petclinic.jar
+                    echo "Logging into Docker Hub..."
+                    echo $PASS | docker login -u $USER --password-stdin
+
+                    echo "Pushing Docker image..."
+                    docker push samirp33/petclinic-app
                     '''
                 }
             }
